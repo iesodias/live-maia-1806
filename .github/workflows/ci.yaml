@@ -3,6 +3,7 @@ name: MDC Workflow
 on:
   push:
     branches:
+      - main
       - develop
       - homold
       - 'feature/**'
