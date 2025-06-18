@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - develop
-      - homol
+      - homold
       - 'feature/**'
 
 jobs:
