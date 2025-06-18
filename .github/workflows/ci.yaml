@@ -6,6 +6,7 @@ on:
       - main
 
 jobs:
+
   build:
     runs-on: ubuntu-latest
 
@@ -13,5 +14,42 @@ jobs:
       - name: Checkout do Código
         uses: actions/checkout@v4
 
-      - name: Mostrar Mensagem
-        run: echo "Olá, MDC, GitHub Actions!"
+      - name: Build do codigo
+        run: echo "Executando build do codigo"
+
+  dev: 
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Fase de Desenvolvimento
+        run: echo "Executando deploy em DEV"
+
+
+  qa: 
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Testes de QA
+        run: echo "Ëxecutando testes de automação de QA"
+
+  homologacao:
+    needs:
+      - dev
+      - qa
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Fase de Homologacao
+        run: echo "Deploy em HML"
+
+
+  producao:
+    needs: homologacao
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy em Producao
+        run: echo "Ëxecutando Deploy em PROD
